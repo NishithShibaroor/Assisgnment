@@ -6,7 +6,7 @@ psql: error: connection to server at "35.200.130.79", port 5432 failed: FATAL:  
 connection to server at "35.200.130.79", port 5432 failed: FATAL:  password authentication failed for user "postgres"
 
 
-prakashgpa@cloudshell:~ (hello-world-364409)$ gcloud sql connect assignement2-postgresql --user=postgres
+nishithss@cloudshell:~ (hello-world-364409)$ gcloud sql connect assignement2-postgresql --user=postgres
 API [sqladmin.googleapis.com] not enabled on project [168761789056]. Would you like to enable and retry (this will take a few minutes)? (y/N)?  y
 
 Enabling service [sqladmin.googleapis.com] on project [168761789056]...
