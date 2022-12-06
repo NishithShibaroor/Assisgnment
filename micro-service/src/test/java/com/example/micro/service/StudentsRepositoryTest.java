@@ -23,45 +23,45 @@ import com.example.micro.service.repository.StudentsRepository;
 public class StudentsRepositoryTest {
 
 	@Autowired
-	   private TestEntityManager entityManager;
+	private TestEntityManager entityManager;
 
-	   @Autowired
-	   private StudentsRepository studentsRepository;
+	@Autowired
+	private StudentsRepository studentsRepository;
 
-	   @Test
-	   public void whenFindAll() {
-	       //given
-		   Students firstStudent = new Students();
-		   firstStudent.setStudentName("Adi");
-	       entityManager.persist(firstStudent);
-	       entityManager.flush();
+	@Test
+	public void whenFindAll() {
+		// given
+		Students firstStudent = new Students();
+		firstStudent.setStudentName("Adi");
+		entityManager.persist(firstStudent);
+		entityManager.flush();
 
-	       Students secondStudent = new Students();
-	       secondStudent.setStudentName("Abi");
-	       entityManager.persist(secondStudent);
-	       entityManager.flush();
+		Students secondStudent = new Students();
+		secondStudent.setStudentName("Abi");
+		entityManager.persist(secondStudent);
+		entityManager.flush();
 
-	       //when
-	       List arrivals = studentsRepository.findAll();
+		// when
+		List arrivals = studentsRepository.findAll();
 
-	       //then
-	       assertThat(arrivals.size()).isEqualTo(2);
-	       assertThat(arrivals.get(0)).isEqualTo(firstStudent);
-	       assertThat(arrivals.get(1)).isEqualTo(secondStudent);
-	   }
+		// then
+		assertThat(arrivals.size()).isEqualTo(2);
+		assertThat(arrivals.get(0)).isEqualTo(firstStudent);
+		assertThat(arrivals.get(1)).isEqualTo(secondStudent);
+	}
 
-	   @Test
-	   public void whenFindAllById() {
-	       //given
-		   Students student = new Students();
-		   student.setStudentName("Adi");
-	       entityManager.persist(student);
-	       entityManager.flush();
+	@Test
+	public void whenFindAllById() {
+		// given
+		Students student = new Students();
+		student.setStudentName("Adi");
+		entityManager.persist(student);
+		entityManager.flush();
 
-	       //when
-	       Optional<Students> testStudent = studentsRepository.findById(student.getEntryId());
+		// when
+		Optional<Students> testStudent = studentsRepository.findById(student.getEntryId());
 
-	       //then
-	       assertThat(testStudent.get().getStudentName()).isEqualTo(student.getStudentName());
-	   }
+		// then
+		assertThat(testStudent.get().getStudentName()).isEqualTo(student.getStudentName());
+	}
 }
