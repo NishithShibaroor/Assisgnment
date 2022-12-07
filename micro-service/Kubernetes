@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-service
+  labels:
+    app: micro-service
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: micro-service
+      labels:
+        app: micro-service
+    spec:
+      containers:
+        - name: micro-service
+          image: micro-service:1.0
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+              name: "http"
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              port: 8081
+              path: /health/ready
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              port: 8081
+              path: /health/live
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: micro-service
+---
